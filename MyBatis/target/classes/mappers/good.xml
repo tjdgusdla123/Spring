@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- goods 테이블의 전체 데이터를 가져오는 SQL id는 구별하기 위한이름
+parameterType은 where 절에 대입할 파라미터 자료형resultType은 select 절의 내용을 전부 저장할 수 있는 자료형 -->
+<mapper namespace="good">
+	<select id="allgood" resultType="GoodVO">
+		select * from goods
+	</select>
+</mapper>

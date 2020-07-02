@@ -4,19 +4,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.GoodDao;
-
-//beanÀ» ÀÚµ¿»ı¼ºÇØ ´Ù¶ó°í ÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
+//beanì„ ìë™ìƒì„±í•´ ë‹¬ë¼ê³  í•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
 @Service
 public class GoodServiceImpl implements GoodService {
-    //DAO º¯¼ö¸¦ ¼±¾ğ
-	//setter¸¦ ¸¸µé¾îÁÖ´Â ±â´É°ú µ¿ÀÏÇÑ ÀÚ·áÇüÀÇ beanÀ» ÁÖÀÔ¹Ş¾ÆÁÖ´Â ¾î³ëÅ×ÀÌ¼Ç
+	//DAO ë³€ìˆ˜ë¥¼ ì„ ì–¸
+	//setterë¥¼ ë§Œë“¤ì–´ì£¼ëŠ” ê¸°ëŠ¥ê³¼ ë™ì¼í•œ ìë£Œí˜•ì˜ beanì„ ì£¼ì…ë°›ì•„ì£¼ëŠ”
+	//ì–´ë…¸í…Œì´ì…˜
 	@Autowired
 	private GoodDao goodDao;
 
 	@Override
 	public void detail() {
 		System.out.println(goodDao.detail(1));
-
 	}
 
 }

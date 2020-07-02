@@ -4,16 +4,16 @@ import org.springframework.stereotype.Repository;
 
 import domain.Good;
 
-//beanÀ» ÀÚµ¿»ı¼ºÇØ ´Ş¶ó°í ÇÏ´Â ¾î³ëÅ×ÀÌ¼Ç
+//beanì„ ìë™ìƒì„±í•´ ë‹¬ë¼ê³  í•˜ëŠ” ì–´ë…¸í…Œì´ì…˜
 @Repository
 public class GoodDao {
-	//¸Ş¼Òµå
-	//»ó¼¼º¸±â¸¦ À§ÇÑ ¸Ş¼Òµå
-	//±âº»Å°¸¦ ¸Å°³º¯¼ö·Î ¹Ş¾Æ¼­ ÇÏ³ªÀÇ DTO¸¦ »ı¼ºÇØ¼­ ¸®ÅÏ
+	//ë©”ì†Œë“œ
+	//ìƒì„¸ë³´ê¸°ë¥¼ ìœ„í•œ ë©”ì†Œë“œ
+	//ê¸°ë³¸í‚¤ë¥¼ ë§¤ê°œë³€ìˆ˜ë¡œ ë°›ì•„ì„œ í•˜ë‚˜ì˜ DTOë¥¼ ìƒì„±í•´ì„œ ë¦¬í„´
 	public Good detail(int num) {
 		Good good = new Good();
 		good.setNum(1);
-		good.setName("¸Á°í");
+		good.setName("ë§ê³ ");
 		return good;
 	}
 }

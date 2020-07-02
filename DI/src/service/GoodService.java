@@ -1,6 +1,6 @@
 package service;
 
 public interface GoodService {
-       //╩С╪╪╨╦╠Б╦╕ цЁ╦╝гр ╦ч╪р╣Е
+	//Л┐│Л└╦КЁ╢Й╦╟К╔╪ Л╡≤К╕╛М∙═ К╘■Л├▄К⌠°
 	public void detail();
 }

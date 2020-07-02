@@ -4,15 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 import service.GoodService;
+import service.GoodServiceImpl;
+
 @Controller
 public class GoodController {
-    //Service ÀÎ½ºÅÏ½º¸¦ ÀúÀåÇÒ º¯¼ö¸¦ »ı¼º
+	//Service ì¸ìŠ¤í„´ìŠ¤ë¥¼ ì €ì¥í•  ë³€ìˆ˜ ìƒì„±
 	@Autowired
 	private GoodService goodService;
-
-	     //»ó¼¼º¸±â¸¦ À§ÇÑ ¸Ş¼Òµå
-         public void detail() {
-        	 goodService.detail();
-       }
-		
+	
+	//ìƒì„¸ë³´ê¸°ë¥¼ ìœ„í•œ ë©”ì†Œë“œ
+	public void detail() {
+		goodService.detail();
+	}
 }
+

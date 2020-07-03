@@ -13,8 +13,7 @@
 	<bean
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/sample?useUnicode=true&amp;characterEncoding=utf8" />
-		<!-- 이렇게 작성하면 오류 발생안함 <property name="url" value="jdbc:mysql://localhost:3306/sample?useSSL=true&amp;characterEncoding=utf8" />-->
+		<property name="url" value="jdbc:mysql://localhost:3306/sample?useUnicode=true&amp;characterEncoding=utf8" />		
 		<property name="username"  value="root" />
 		<property name="password"  value="8989450a" />
 	</bean>

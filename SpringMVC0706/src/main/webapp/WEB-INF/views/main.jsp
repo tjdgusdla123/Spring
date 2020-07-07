@@ -26,16 +26,16 @@ enctype은 file이 있을 때만 multipart/form-data를 설정 -->
 			</li>
 			<li>
 				<label for="memberpassword1">비밀번호확인</label> 
-				<input type="password" id="memberpassword1" class="textinput"  placeholder="비밀번호확인" maxlength="4"/>
+				<input type="password" id="memberpassword1" name="memberpassword1" class="textinput"  placeholder="비밀번호확인" maxlength="4"/>
 			</li>
 
 	         <li>
 				<label for="memberphonenumber">전화번호</label> 
-				<input type="text" id="memberphonenumber" class="textinput" placeholder="전화번호를입력하세요" />
+				<input type="text" id="memberphonenumber" name="memberphonenumber" class="textinput" placeholder="전화번호를입력하세요" />
 			</li>
 			<li>
 				<label for="membernickname">닉네임</label> 
-				<input type="text" id="membernickname" class="textinput" placeholder="닉네임을입력하세요" />
+				<input type="text" id="membernickname"  name="membernickname" class="textinput" placeholder="닉네임을입력하세요" />
 				<button >중복확인</button><br/>
 			</li>
 			

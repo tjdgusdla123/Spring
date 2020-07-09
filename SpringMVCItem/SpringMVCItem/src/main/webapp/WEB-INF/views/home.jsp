@@ -38,9 +38,6 @@
 			<li><a href="dataformat.csv" class="menu"> 문자열 출력 </a></li>
 			<li><a href="dataformat.json" class="menu">데이터 확인</a></li>
 			<li><a href="#" class="menu" id="ajaxbtn">ajax 요청</a></li>
-			<li><a href="item.xml" class="menu">XML 요청</a></li>
-			<li><a href="exception" class="menu">예외발생</a></li>
-			<li><a href="validation" class="menu">유효성 검사</a></li>
 		</ul>
 	</div>
 	
@@ -71,7 +68,6 @@
 					list[2].Polymorphism + "<br/>";
 			});
 		});
-		
 	</script>
 </body>
 </html>

@@ -9,26 +9,73 @@
 
 	<!-- Controller가 처리하지 못하는 URL은 WAS가 처리하도록 하는 설정 -->
 	<default-servlet-handler/>
-	
-	<!-- Spring MVC Project에서 50여가지의 설정을 대신해주는 태그
-	Spring MVC 의 어노테이션을 사용할 수 있도록 해주는 태그 -->
+
+	<!-- Spring MVC 관련 50여가지 어노테이션을 사용할 수 있도록 해주는 설정 -->
 	<annotation-driven />
 
-	<!-- 변화가 거의 없는 파일들을 저장해 두면 캐싱을 해서 이용할 수 있도록 해주는 설정
-	기본은 root(webapp, WebContent) 디렉토리의 resources 
-	캐싱 시간을 설정하는 것도 가능 -->
+	<!-- 외부 자원을 캐싱할 디렉토리 와 URL 설정 -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Controller 에서 forwarding 하는 view 이름을 넘겨주었을 때 실제 사용할
-	View를 결정짓는 설정 -->
-	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- Controller가 리턴한 뷰 이름을 가지고 실제 출력할 뷰를 설정하는 뷰 리졸버
+	jstlview(jsp)로 출력 -->
+	<beans:bean 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
 	</beans:bean>
 	
-	<!-- bean을 자동 생성해주는 root 패키지 설정
-	클래스를 만들 때는 이 패키지 안에 만드는 것을 권장
-	다른 패키지를 만들었다면 다른 패키지도 추가해주면 됩니다. -->
 	<context:component-scan base-package="kr.co.pk" />
 	
+	<!-- BeanNameViewResolver 설정 -->
+	<beans:bean 
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />	
+	</beans:bean>
+	
+	<!-- download 출력 설정 -->
+	<beans:bean id="download" class="kr.co.pk.view.DownloadView" />
+	<!-- Excel 출력 -->
+	<beans:bean id="excel" class="kr.co.pk.view.ExcelView" />
+	<!-- PDF 출력 -->
+	<beans:bean id="pdf" class="kr.co.pk.view.PdfView" />
+	<!-- JSON 출력 -->
+	<beans:bean id="itemlist" 
+	class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	<!-- XML 출력 -->
+	<beans:bean id="marshaller"
+	class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<beans:property name="classesToBeBound">
+			<beans:list>
+				<beans:value>kr.co.pk.item.domain.ItemReport</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<beans:bean id="itemxml"
+	class="org.springframework.web.servlet.view.xml.MarshallingView">
+		<beans:property name="marshaller" ref="marshaller" />
+		<beans:property name="modelKey" value="list" />
+	</beans:bean>
+	
+	<!-- 메시지 파일의 경로 설정 -->
+	<beans:bean id="messageSource"
+	class="org.springframework.context.support.ResourceBundleMessageSource">
+		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>message/label</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+	
+	<!-- validation 요청이 오면 view name을 validation으로 설정 -->
+	<!-- 
+		<view-controller path="validation" view-name="validation"/>
+	 -->
 </beans:beans>
+
+
+
+
+
+

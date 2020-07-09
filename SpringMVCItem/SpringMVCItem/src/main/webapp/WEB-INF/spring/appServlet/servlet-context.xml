@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Controller가 처리하지 못하는 URL은 WAS가 처리하도록 하는 설정 -->
+	<default-servlet-handler/>
+
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Controller가 리턴한 뷰 이름을 가지고 실제 출력할 뷰를 설정하는 뷰 리졸버
+	jstlview(jsp)로 출력 -->
+	<beans:bean 
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1" />
+	</beans:bean>
+	
+	<context:component-scan base-package="kr.co.pk" />
+	
+	<!-- BeanNameViewResolver 설정 -->
+	<beans:bean 
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0" />	
+	</beans:bean>
+	
+	<!-- download 출력 설정 -->
+	<beans:bean id="download" class="kr.co.pk.view.DownloadView" />
+	<!-- Excel 출력 -->
+	<beans:bean id="excel" class="kr.co.pk.view.ExcelView" />
+	<!-- PDF 출력 -->
+	<beans:bean id="pdf" class="kr.co.pk.view.PdfView" />
+	<!-- JSON 출력 -->
+	<beans:bean id="itemlist" 
+	class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+</beans:beans>
+
+
+
+
+
+

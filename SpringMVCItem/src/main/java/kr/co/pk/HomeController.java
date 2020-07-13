@@ -14,7 +14,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import kr.co.pk.item.domain.Command;
 import kr.co.pk.item.domain.Item;
 import kr.co.pk.item.domain.ItemReport;
 import kr.co.pk.item.domain.Member;
@@ -143,7 +147,41 @@ public class HomeController {
 		list.add("비회원");
 		return list;
 	}
-
+	
+	@RequestMapping(value="fileupload", method=RequestMethod.GET)
+	public String fileUpload() {
+		return "fileupload";
+	}
+	
+	@RequestMapping(value="requestupload",method=RequestMethod.POST)
+	public String upload(MultipartHttpServletRequest request) {
+		//파라미터 읽어오기
+		String number = request.getParameter("number");
+		MultipartFile report = request.getFile("report");
+		
+		//출력
+		System.out.println("number:" + number);
+		System.out.println("filename:" + report.getOriginalFilename());		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="requestparamupload",method=RequestMethod.POST)
+	public String upload(@RequestParam ("number") String number, @RequestParam ("report") MultipartFile report) {	
+		//출력
+		System.out.println("number:" + number);
+		System.out.println("filename:" + report.getOriginalFilename());		
+		return "redirect:/";
+	}
+	
+	@RequestMapping(value="commandupload",method=RequestMethod.POST)
+	public String upload(Command command) {
+		//출력
+		System.out.println("number:" + command.getNumber());
+		System.out.println("filename:" + command.getReport().getOriginalFilename());
+		
+		return "redirect:/";
+	}
+	
 }
 
 

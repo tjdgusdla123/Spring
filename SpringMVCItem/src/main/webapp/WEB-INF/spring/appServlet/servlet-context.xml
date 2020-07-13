@@ -72,6 +72,11 @@
 	<!-- 
 		<view-controller path="validation" view-name="validation"/>
 	 -->
+	 
+	 <!-- 파일 업로드 처리를 위한 bean -->
+	 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+</beans:bean>
+
 </beans:beans>
 
 

@@ -41,6 +41,7 @@
 			<li><a href="item.xml" class="menu">XML 요청</a></li>
 			<li><a href="exception" class="menu">예외발생</a></li>
 			<li><a href="validation" class="menu">유효성 검사</a></li>
+			<li><a href="fileupload" class="menu">파일 업로드 </a></li>
 		</ul>
 	</div>
 	

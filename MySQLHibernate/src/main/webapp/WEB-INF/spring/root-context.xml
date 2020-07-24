@@ -27,18 +27,11 @@
 
 		<!-- 데이터베이스 종류 -->
 		<property name="hibernateProperties">
-			<value>hibernate.dialect=org.hibernate.dialect.Oracle10gDialect</value>
+			<value>hibernate.dialect=org.hibernate.dialect.MySQLDialect</value>
 		</property>
 	</bean>
 
-	<!-- 하이버네이트 트랜잭션 매니저 -->
-	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
-
-	<bean
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-
+	
 
 
 </beans>

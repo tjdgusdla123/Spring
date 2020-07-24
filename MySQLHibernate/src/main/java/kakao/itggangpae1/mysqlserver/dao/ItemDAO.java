@@ -34,16 +34,18 @@ public class ItemDAO {
 	 int start = (Integer)map.get("start");
 	 int size = (Integer)map.get("size");
 	 
+	 if(value != null) {
 	 //like 검색을 하고자 하는 경우 
 	 //대소문자 구분하지 않고 검색하기 위해서 toLoweCase사용 
 	 value ="%"+value.toLowerCase()+"%";
-	 
+	 }
 	 //검색 항목이 없는 경우
 	 //itemname에서 검색 , description에서검색
 	 //itemname descritpion에서 검색
 	 if(searchtype == null) {
 			//select * from item limit 0,2
 			list = sessionFactory.getCurrentSession().createNativeQuery("select * from item limit " + start + "," + size ).getResultList();
+			//list = sessionFactory.getCurrentSession().createNativeQuery("select * from item limit " + start + "," + size ).getResultList();
 		}else if(searchtype.equals("itemname")) {
 			//select * from item where lower(itemname) like '포도' limit 0,2)
 			list = sessionFactory.getCurrentSession().createNativeQuery("select * from item where lower(itemname) like \'" + value + "\' limit " + start + "," + size).getResultList();
@@ -67,8 +69,9 @@ public class ItemDAO {
     	 String value = (String)map.get("value");
     	 
     	 List<BigInteger> list = null;
+    	 if(value != null) {
     	 value ="%"+value.toLowerCase()+"%";
-    	 
+    	 }
     	 if(searchtype == null) {
  			//select count(*) from item
  			list = sessionFactory.getCurrentSession().createNativeQuery("select count(*) from item").getResultList();

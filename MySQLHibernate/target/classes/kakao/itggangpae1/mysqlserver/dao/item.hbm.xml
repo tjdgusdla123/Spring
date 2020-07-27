@@ -4,7 +4,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping package="kakao.itggangpae1.mysqlserver.domain">
-<class name="Item" table="Item">
+<class name="Item" table="item">
 <id name="itemid" column="itemid" />
 <property name="itemname" column="itemname"/>
 <property name="price" column="price"/>

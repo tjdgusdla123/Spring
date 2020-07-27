@@ -89,16 +89,21 @@ public class ItemServiceImpl implements ItemService {
 		//데이터가 존재하면 가장 큰 itemid의 값에 +1
 		if(count != 0) {
 			itemid = itemDao.maxid() + 1;
+	     System.out.println(itemid);
+	     
 		}
 		
 		String itemname = request.getParameter("itemname");
 		int price = Integer.parseInt(request.getParameter("price"));
 		String description = request.getParameter("description");
-		
+		 System.out.println("서비스 impl:"+itemname);
+		 System.out.println("서비스 impl:"+price);
+		 System.out.println("서비스 impl:"+description);
 		//파일의 기본값을 설정
 		String pictureurl = "default.jpg";
+		 System.out.println("서비스 impl:"+pictureurl);
 		//파일 파라미터 가져오기
-		MultipartFile image = request.getFile("picturlurl");
+		MultipartFile image = request.getFile("pictureurl");
 		//전송된 파일이 존재하면 
 		if(image != null && image.isEmpty() == false) {
 			//파일을 저장할 디렉토리 경로 가져오기 
@@ -107,7 +112,7 @@ public class ItemServiceImpl implements ItemService {
 			pictureurl = UUID.randomUUID() + image.getOriginalFilename();
 			//실제 파일 경로 만들기
 			filePath = filePath + "/" + pictureurl;
-			
+			System.out.println("서비스 impl:"+pictureurl);
 			try {
 			//파일을 기록할 출력 스트림 생성
 			FileOutputStream fos = new FileOutputStream(filePath);
@@ -126,8 +131,12 @@ public class ItemServiceImpl implements ItemService {
 			item.setPictureurl(pictureurl);
 			
 			itemDao.insert(item);
+			System.out.println("서비스 impl item:"+item);
+		
+			
 			
 			request.setAttribute("insert", true);
+			System.out.println("서비스 impl request:"+request);
 			
 		}
 		

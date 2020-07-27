@@ -95,7 +95,7 @@ public class ItemDAO {
      }
           //가장 큰 ItemId를 찾아오는 메소드
      public int maxid() {
-    	     List<Integer>list = sessionFactory.getCurrentSession().createNativeQuery("select max(itemid) form item").getResultList();
+    	     List<Integer> list = sessionFactory.getCurrentSession().createNativeQuery("select max(itemid) from item").getResultList();
 			return list.get(0);
     	     
      }

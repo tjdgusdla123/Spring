@@ -51,17 +51,25 @@ public class ItemDataController {
 	//데이터를 입력받아서 수행하는 처리는 method를 POST로 설
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	public Map<String, Object> insert(MultipartHttpServletRequest request){
+		//데이터를 삽입하는 메소
 		itemService.insert(request);
-		Boolean result = (boolean)request.getAttribute("insert");
+		Boolean result = (Boolean)request.getAttribute("insert");
+	
+		System.out.println("컨트롤러 request "+request);
+		System.out.println("컨트롤러 result "+result);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		//삽입에 성공하면 result는 true 그렇지 않으면 false
 		if(result != null) {
 			map.put("result", result);
+		
 		}else {
 			map.put("result", false);
+           System.out.println(result);
 		}
+		System.out.println("컨트롤러 map "+map);
 		return map;
+		
 	}
 	
 	

@@ -41,19 +41,19 @@ public class MemberDAO {
 	}
 	
 	//로그인을 위한 메소드
-	//nickname 과 pw를 가지고 로그인
-	//nickname을 가지고 모든 정보를 전부 찾아가면 됩니다.
-	public List<Member> login(String nickname){
-		List<Member> list = 
-				sessionFactory.getCurrentSession()
-				.createNativeQuery(
-					"select nickname, pw, email, profile "
-					+ "from member "
-					+ "where nickname = \'" + nickname 
-					+ "\'")
-				.getResultList();
-		return list;
-	}
+		//nickname 과 pw를 가지고 로그인
+		//nickname을 가지고 모든 정보를 전부 찾아가면 됩니다.
+		public List<Member> login(String nickname){
+			List<Member> list = 
+					sessionFactory.getCurrentSession()
+					.createNativeQuery(
+						"select nickname, pw, email, profile "
+						+ "from member "
+						+ "where nickname = \'" + nickname 
+						+ "\'", Member.class)
+					.getResultList();
+			return list;
+		}
 	
 	//회원정보를 수정하는 메소드
 	public void update(Member member) {

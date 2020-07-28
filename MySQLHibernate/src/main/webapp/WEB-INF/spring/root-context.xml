@@ -22,6 +22,8 @@
 		<property name="mappingResources">
 			<list>
 				<value>kakao/itggangpae1/mysqlserver/dao/item.hbm.xml</value>
+				<value>kakao/itggangpae1/mysqlserver/dao/member.hbm.xml</value>
+				
 			</list>
 		</property>
 

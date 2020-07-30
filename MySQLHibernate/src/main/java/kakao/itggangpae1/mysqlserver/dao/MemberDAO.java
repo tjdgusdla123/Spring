@@ -53,7 +53,7 @@ public class MemberDAO {
 						+ "\'", Member.class)
 					.getResultList();
 			return list;
-		}
+		}	
 	
 	//회원정보를 수정하는 메소드
 	public void update(Member member) {

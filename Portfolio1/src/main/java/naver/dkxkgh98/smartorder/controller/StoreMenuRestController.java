@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import naver.dkxkgh98.smartorder.domain.StoreMenu;
 import naver.dkxkgh98.smartorder.service.StoreMenuService;
 
 
@@ -21,9 +22,9 @@ public class StoreMenuRestController {
 	@Autowired
 	private StoreMenuService storeMenuService;
 	
-	@RequestMapping(value = {"/orderinfo/mainmenu" , "/orderinfo/alcohol", "/orderinfo/drink"} , method = RequestMethod.GET)
+	@RequestMapping(value = {"/nonmember/mainmenu" , "/nonmember/alcohol", "/nonmember/drink"} , method = RequestMethod.GET)
 	public Map<String, Object> mainmenu(HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("Controller 도착");
+		System.out.println("Controller-nonmember/mainmenu 도착");
 		storeMenuService.getMenu(request, response);
 		
 		Map<String, Object> map = new HashMap<String, Object>();

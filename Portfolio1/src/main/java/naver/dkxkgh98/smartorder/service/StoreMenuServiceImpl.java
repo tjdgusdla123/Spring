@@ -33,9 +33,13 @@ public void getMenu(HttpServletRequest request, HttpServletResponse response) {
 	System.out.println("StoreMenuServiceImpl.getmenu.storeMenu : " + storeMenu);
 	System.out.println("StoreMenuServiceImpl.getmenu-storeMenu-storeNickname : " + storeNickname);;
 	System.out.println("StoreMenuServiceImpl.getmenu-storeMenu-menuSection : " + menuSection);
-	
+
 	List<StoreMenu> list =storeMenuDao.getMenu(storeMenu);
+
+	
 	System.out.println("StoreMenuServiceImpl.getmenu.list : " + list);
+	
+	request.setAttribute("list", list);
 }
 
 	

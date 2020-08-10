@@ -16,7 +16,7 @@ public class StoreMenuPageController {
 	@RequestMapping(value = { "/","index.html","user/main"},method = RequestMethod.GET)
 	public String home(HttpServletRequest request, HttpServletResponse response) {	
 	System.out.println("컨트롤러 메인 도착");
-		return "member/main";
+		return "user/main";
 		
 	}
 	@RequestMapping(value = "nonmember",method = RequestMethod.GET)

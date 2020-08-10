@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- mybatis 동적 SQL: 조건에 따라 변경되는 SQL -->
+<mapper namespace="item">
+<sql id="search">
+		<if test="searchtype != null">
+			<if test="searchtype == ''.toString()">
+			</if>
+			<if test="searchtype == 'itemname'.toString()"> 
+			where lower(itemname)  like '%' || #{keyword} || '%' 
+			</if>
+			<if test="searchtype == 'description'.toString()">
+			 where  lower(description) like '%' || #{keyword} || '%' 
+			 </if>		
+			<if test="searchtype == 'both'.toString()"> 
+			where lower(itemname)  like '%' || #{keyword} || '%' or lower(description)  like '%' || #{keyword} || '%' 
+			</if>
+		</if>
+		<if test="searchtype == null">
+		</if>
+	</sql>
+	<!-- 데이터의 개수를 가져오는 SQL 
+	Map에서 searchtype을 확인해서 일치하는 sql을 추가 -->
+	
+	<select id="count" resultType="java.lang.Integer" parameterType="java.util.Map">
+		SELECT count(*) FROM item
+		<include refid="search"></include>
+	</select>
+	
+	<!-- 시작 번호와 종료 번호를 받아서 번호에 해당되는 데이터만 가져오는 SQL -->
+	<select id="list" resultType="kakao.itstudy.mybatisserver.domain.Item" parameterType="java.util.Map">
+    	SELECT itemid, itemname, price, description, pictureurl
+		FROM (SELECT rownum rnum, itemid, itemname, price, description, pictureurl 
+			FROM (SELECT * FROM item 
+			<include refid="search"></include>
+			 ORDER BY itemid desc))
+		WHERE rnum &gt;= #{start} AND rnum &lt;= #{end}
+  	</select>
+  	
+  	<!-- itemid를 이용해서 1개의 데이터를 찾아오는 SQL -->
+	<select id="detail"
+		resultType="kakao.itstudy.mybatisserver.domain.Item"
+		parameterType="java.lang.Integer">
+		SELECT itemid, itemname, price, description, pictureurl FROM item where
+		itemid = #{itemid}
+	</select>
+  	
+  		<!-- 기본키의 데이터를 만들기 위해서 가장 큰 itemid를 찾아오는 SQL -->
+	<select id="maxid" resultType="java.lang.Integer">
+		SELECT max(itemid) FROM item
+	</select>
+	
+	<!-- 데이터를 삽입하는 SQL -->
+	<insert id="insert"
+		parameterType="kakao.itstudy.mybatisserver.domain.Item">
+		insert into item(itemid, itemname, price, description, pictureurl)
+		values(#{itemid}, #{itemname}, #{price}, #{description},
+		#{pictureurl})
+	</insert>
+
+  	
+  	
+</mapper>

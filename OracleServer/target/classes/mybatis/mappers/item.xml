@@ -30,7 +30,10 @@
 	</select>
 	
 	<!-- 시작 번호와 종료 번호를 받아서 번호에 해당되는 데이터만 가져오는 SQL -->
-	<select id="list" resultType="kakao.itstudy.mybatisserver.domain.Item" parameterType="java.util.Map">
+	<!-- 데이터 목록 가져오기 searchtype,keyword,start,end 를 입력받아서 데이터 목록을 리턴해주는 SQL
+	Map은 searchtype,keyword,start,end 를 묶어주기 위한 자료형 resultType 은select 절의 데이터를 묶을수있는 자료형
+	  -->
+	<select id="list" resultType="kakao.itstudy.oracleserver.domain.Item" parameterType="java.util.Map">
     	SELECT itemid, itemname, price, description, pictureurl
 		FROM (SELECT rownum rnum, itemid, itemname, price, description, pictureurl 
 			FROM (SELECT * FROM item 
@@ -39,9 +42,10 @@
 		WHERE rnum &gt;= #{start} AND rnum &lt;= #{end}
   	</select>
   	
-  	<!-- itemid를 이용해서 1개의 데이터를 찾아오는 SQL -->
+  	<!-- itemid를 이용해서 1개의 데이터를 찾아오는 SQL --> 	
+	<!-- 상세보기 기본키를 대입받아서 기본키에 해당하는 모든 컬럼을 가져옵니다. -->
 	<select id="detail"
-		resultType="kakao.itstudy.mybatisserver.domain.Item"
+		resultType="kakao.itstudy.oracleserver.domain.Item"
 		parameterType="java.lang.Integer">
 		SELECT itemid, itemname, price, description, pictureurl FROM item where
 		itemid = #{itemid}
@@ -53,13 +57,16 @@
 	</select>
 	
 	<!-- 데이터를 삽입하는 SQL -->
+	<!-- 삽입하기 필요한 컬럼의 값을 입력받아서 삽입을 합니다.삽입이나 삭제나 갱신은 무조건 정수를 리턴하기 때문에 resultType이 없음 -->
 	<insert id="insert"
-		parameterType="kakao.itstudy.mybatisserver.domain.Item">
+		parameterType="kakao.itstudy.oracleserver.domain.Item">
 		insert into item(itemid, itemname, price, description, pictureurl)
 		values(#{itemid}, #{itemname}, #{price}, #{description},
 		#{pictureurl})
 	</insert>
-
+	
+	
+   
   	
   	
 </mapper>

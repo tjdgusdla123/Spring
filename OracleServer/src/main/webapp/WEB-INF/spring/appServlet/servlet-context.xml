@@ -32,6 +32,13 @@
 	
 	<context:component-scan base-package="kakao.itstudy.oracleserver" />
 	
+	<!-- MyBatis 트랜잭션 관련 bean -->
+	<beans:bean id="transactionManager"
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+	
+	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	
 </beans:beans>

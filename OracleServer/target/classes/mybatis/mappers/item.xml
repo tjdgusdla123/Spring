@@ -53,11 +53,12 @@
   	
   		<!-- 기본키의 데이터를 만들기 위해서 가장 큰 itemid를 찾아오는 SQL -->
 	<select id="maxid" resultType="java.lang.Integer">
-		SELECT max(itemid) FROM item
+		select max(itemid) from item
 	</select>
 	
 	<!-- 데이터를 삽입하는 SQL -->
 	<!-- 삽입하기 필요한 컬럼의 값을 입력받아서 삽입을 합니다.삽입이나 삭제나 갱신은 무조건 정수를 리턴하기 때문에 resultType이 없음 -->
+	
 	<insert id="insert"
 		parameterType="kakao.itstudy.oracleserver.domain.Item">
 		insert into item(itemid, itemname, price, description, pictureurl)

@@ -34,28 +34,19 @@ public class MybatisTest {
 //		
 //		/*
 //		//아무런 조건없이 테스트
-//		Map<String, Object> map = 
-//				new HashMap<String,Object>();
-//		System.out.println("데이터 개수:" + 
-//			sqlSession.selectOne(
-//					"item.count", map).toString());
+//		Map<String, Object> map = new HashMap<String,Object>();
+//		System.out.println("데이터 개수:" + sqlSession.selectOne("item.count", map).toString());		
 //		map.put("start", 1);
 //		map.put("end", 2);
-//		System.out.println("데이터 목록:" + 
-//				sqlSession.selectList(
-//						"item.list", map).toString());
+//		System.out.println("데이터 목록:" + sqlSession.selectList("item.list", map).toString());
 //		
 //		//description에 비타민이 포함된 데이터 개수 
 //		map.put("searchtype", "description");
 //		map.put("keyword", "비타민");
-//		System.out.println("데이터 개수:" + 
-//				sqlSession.selectOne(
-//						"item.count", map).toString());
-//		System.out.println("데이터 목록:" + 
-//				sqlSession.selectList(
-//						"item.list", map).toString());
+//		System.out.println("데이터 개수:" + sqlSession.selectOne("item.count", map).toString());
+//		System.out.println("데이터 목록:" + sqlSession.selectList("item.list", map).toString());
 //		*/
-//		
+	
 //		//상세보기 테스트
 //		/*
 //		System.out.println(sqlSession.selectOne(
@@ -112,14 +103,14 @@ public class MybatisTest {
 			
 			//System.out.println(itemDao.maxid());
 			
-			Item item = new Item();
-			item.setItemid(8);
-			item.setItemname("과자");
-			item.setPrice(2000);
-			item.setDescription("애들이 좋아함");
-			item.setPictureurl("default.jpg");
-			System.out.println(itemDao.insert(item));
-			
+//			Item item = new Item();
+//			item.setItemid(8);
+//			item.setItemname("과자");
+//			item.setPrice(2000);
+//			item.setDescription("애들이 좋아함");
+//			item.setPictureurl("default.jpg");
+//			System.out.println(itemDao.insert(item));
+//			
 			
 		}
 	}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD복사해서 사용하자 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="storemember">
+    <!-- 로그인 처리를 위한 sql -->
+     <select id="login" resultType="naver.dkxkgh98.smartorder.domain.StoreMember" parameterType="java.lang.String">
+      select  membernickname,memberpassword,memberemail,memberphonenumber
+      from storemembertbl
+      where membernickname=#{membernickname}
+          
+      </select>   
+    
+	<!--   email에 해당하는 데이터 찾아오기
+     <select id="memberemailcheck"  resultType="java.lang.String">
+    select memberemail
+    from storemembertbl 
+    </select> -->
+    
+    <!-- 닉네임 중복체크 SQL -->
+    <select id="membernicknamecheck" parameterType="java.lang.String" resultType="java.lang.String">
+    select membernickname
+    from storemembertbl
+    where membernickname = #{membernickname}
+    
+    </select>
+    
+    <!-- 이메일 중복체크 SQL -->
+    <select id="memberemailcheck" parameterType="java.lang.String" resultType="java.lang.String">
+    select memberemail
+    from storemembertbl
+    where memberemail = #{memberemail}
+    
+    </select>
+    
+    <!-- 회원가입 처리하는 SQL -->
+    <insert id="join" parameterType="naver.dkxkgh98.smartorder.domain.StoreMember">  
+	insert into storemembertbl(membernickname, memberemail, memberpassword,memberphonenumber) 
+	values(#{membernickname}, #{memberemail}, #{memberpassword},#{memberphonenumber}) 
+		</insert>
+  
+
+
+	<!-- storemembertbl 테이블의 데이터를 전부 가져오는 SQL
+	<select id="allstoremember"
+		resultType="naver.dkxkgh98.smartorder.domain.StoreMember">
+		select membernickname, memberemail,memberphonenumber
+		from storemembertbl
+	</select>
+	-->
+
+	<!--storemembertbl 상세보기를 
+	<select id="detailstoremember" parameterType="java.lang.String"
+		resultType="naver.dkxkgh98.smartorder.domain.StoreMember">
+		select
+		membernickname,memberemail,memberpassword,memberphonenumber,memberislogin,memberlastlogindate,memberisremove
+		from storemembertbl
+		where membernickname=#{membernickname}
+	</select>
+-->
+	
+</mapper>
+  
+ 

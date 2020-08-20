@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD복사해서 사용하자 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="storemenu">
+ <!-- storemenutbl 테이블의 데이터를 가져오는 SQL -->
+	<select id="allstoremenu"
+		resultType="naver.dkxkgh98.smartorder.domain.StoreMenu">
+		select  storenickname,menucode,menuname,menuprice,menusection    
+		from storemenutbl 
+	</select>
+
+	<!--storemembertbl 상세보기를 -->
+	<select id="detailstoremenu" parameterType="java.lang.String"
+		resultType="naver.dkxkgh98.smartorder.domain.StoreMenu">
+		select menucode,menuname,menuinfo,menuprice,menuphoto,menusection,storenickname 
+		from storemenutbl
+		where menucode=#{menucode}
+	
+	</select>
+	<!-- ajax -->
+	<select id="getmenu" parameterType="naver.dkxkgh98.smartorder.domain.StoreMenu"
+		resultType="naver.dkxkgh98.smartorder.domain.StoreMenu">
+		select menuname,menuinfo,menuprice
+		from storemenutbl
+		where menusection = #{menuSection} and storenickname = #{storeNickname}
+	
+	</select>
+
+ </mapper>

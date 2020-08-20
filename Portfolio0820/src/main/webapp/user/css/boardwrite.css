@@ -1,0 +1,23 @@
+ul li {
+	clear: both;
+	
+}
+form {
+	width: 50em;
+	/*border: 1px solid #666;*/
+	border-radius: 10px;
+	box-shadow: .2em .2em .5em #999;
+	background-color: #ffffff;
+	padding: 1em;
+	overflow: hidden;
+	margin:200px auto 0;
+	
+}
+label,p{
+	display: block;
+	float: left;
+	width: 10em;
+	text-align: right;
+	margin-right: .5em;
+	color: #04699d;
+}

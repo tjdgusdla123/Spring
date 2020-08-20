@@ -65,9 +65,6 @@
 		values(#{itemid}, #{itemname}, #{price}, #{description},
 		#{pictureurl})
 	</insert>
-	
-	
-   
-  	
+		
   	
 </mapper>

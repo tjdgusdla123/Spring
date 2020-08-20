@@ -35,6 +35,11 @@ public class StoreMemberBoardPageController {
 		return "user/boardwrite";
 }	
 	
+	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
+	public String boardlist() {
+		System.out.println("페이지controller도착-글쓰기"); 
+		return "user/boardlist";
+}	
 //	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
 //   public String memberBoardList(HttpServletRequest request, HttpServletResponse response) {
 //		////System.out.println("페이지controller도착-list"); 

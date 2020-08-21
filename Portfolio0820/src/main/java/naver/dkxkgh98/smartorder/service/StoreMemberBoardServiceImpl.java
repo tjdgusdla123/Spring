@@ -86,6 +86,7 @@ public void memberBoardList(HttpServletRequest request, HttpServletResponse resp
 			System.out.println("ServiceImpl-memberBoardList-memberBoardCount:"+memberBoardCount);
 			List<StoreMemberBoard> memberBoardList = storeMemberBoardDao.memberBoardList(map);
 			System.out.println("ServiceImpl-memberBoardList-memberBoardList:"+memberBoardList);
+			
 			//DAO의 메소드를 호출해서 결과 가져오기 - 데이터 개수와 데이터 목록
 			map = new HashMap<String,Object>();
 			map.put("memberBoardList",memberBoardList);

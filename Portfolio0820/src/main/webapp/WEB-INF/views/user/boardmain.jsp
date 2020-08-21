@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
+<script src= "${pageContext.request.contextPath}/user/js/boardlist.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/user/css/boardmain.css">
 </head>
 <body>

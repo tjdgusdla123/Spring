@@ -40,7 +40,7 @@ public class StoreMemberBoardRestController {
 		return map;
 		
 	}
-	@RequestMapping(value ="boardlist" ,method = RequestMethod.GET)
+	@RequestMapping(value ={"boardlist1","boardlist1/boardlist"} ,method = RequestMethod.GET)
 	public Map<String,Object> memberBoardList(HttpServletRequest request,HttpServletResponse response){
 		System.out.println("StoreMemberBoardController-memberBoardList-도착");
 		storeMemberBoardService.memberBoardList(request, response);

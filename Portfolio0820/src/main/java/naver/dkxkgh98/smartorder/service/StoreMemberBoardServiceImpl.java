@@ -39,6 +39,7 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 @Override
 @Transactional
 public void memberBoardList(HttpServletRequest request, HttpServletResponse response) {
+
 	//페이지 번호와 페이지 당 데이터 개수 읽어와서 데이터의 인덱스를 생성
 	String pageNo = request.getParameter("pageno");
     String pagecnt =request.getParameter("pagecnt");
@@ -50,7 +51,7 @@ public void memberBoardList(HttpServletRequest request, HttpServletResponse resp
 	System.out.println("ServiceImpl-memberBoardList-searchtype:"+searchtype);
 	System.out.println("ServiceImpl-memberBoardList-keyword:"+keyword);
 	
-	int cnt= 3;
+	int cnt= 10;
 	//한번에 가져올 데이터 개수를 설정
 	
 			if(pagecnt != null) {
@@ -85,6 +86,16 @@ public void memberBoardList(HttpServletRequest request, HttpServletResponse resp
 			int memberBoardCount= storeMemberBoardDao.memberBoardCount(map);
 			System.out.println("ServiceImpl-memberBoardList-memberBoardCount:"+memberBoardCount);
 			List<StoreMemberBoard> memberBoardList = storeMemberBoardDao.memberBoardList(map);
+			Calendar cal = Calendar.getInstance();
+			Date today = new Date(cal.getTimeInMillis());
+			for (StoreMemberBoard storeMemberBoard : memberBoardList) {
+				if (today.toString().equals(storeMemberBoard.getBoardRegdate().toString().substring(0, 10))) {
+					storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(11));
+				} else {
+					storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(0, 10));
+				}
+			}
+
 			System.out.println("ServiceImpl-memberBoardList-memberBoardList:"+memberBoardList);
 			
 			//DAO의 메소드를 호출해서 결과 가져오기 - 데이터 개수와 데이터 목록

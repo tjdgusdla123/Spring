@@ -22,6 +22,7 @@ public interface StoreMemberBoardService {
 	public void  memberBoardDetail(HttpServletRequest request, HttpServletResponse response);
 
 
+
 	
 	
 }

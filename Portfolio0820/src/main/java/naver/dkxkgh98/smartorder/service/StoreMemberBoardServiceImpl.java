@@ -115,10 +115,14 @@ public void memberBoardList(HttpServletRequest request, HttpServletResponse resp
 @Override
 @Transactional
 public void memberBoardDetail(HttpServletRequest request, HttpServletResponse response) {
-  String boardBno =request.getParameter("boardbno");
+
+	String path = request.getRequestURI();
+	String [] ar = path.split("/");
+	String boardBno = ar[ar.length-1];
+  //String boardBno =request.getParameter("boardbno");
   System.out.println("ServiceImpl-memberBoardDetail-boardBno:"+boardBno);
   
-  StoreMemberBoard storeMemberBoard = storeMemberBoardDao.memberBoardDetail(Integer.parseInt(boardBno));
+ StoreMemberBoard storeMemberBoard = storeMemberBoardDao.memberBoardDetail(Integer.parseInt(boardBno));
   System.out.println("ServiceImpl-memberBoardDetail-storeMemberBoard:"+storeMemberBoard);
   
   Map<String, Object> map =  new HashMap<String, Object>();
@@ -130,7 +134,7 @@ public void memberBoardDetail(HttpServletRequest request, HttpServletResponse re
   System.out.println("ServiceImpl-memberBoardDetail-map:"+map);
   System.out.println("ServiceImpl-memberBoardDetail-request:"+request);
 
-
+ 
 }
 
 

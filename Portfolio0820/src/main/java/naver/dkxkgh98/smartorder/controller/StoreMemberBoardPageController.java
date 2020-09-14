@@ -40,6 +40,12 @@ public class StoreMemberBoardPageController {
 		System.out.println("페이지controller도착-글쓰기"); 
 		return "user/boardlist";
 }	
+	
+//	@RequestMapping(value ="boarddetail", method = RequestMethod.GET)
+//	public String boarddetail() {
+//		System.out.println("페이지controller도착-글쓰기"); 
+//		return "user/boarddetail";
+//}	
 //	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
 //   public String memberBoardList(HttpServletRequest request, HttpServletResponse response) {
 //		////System.out.println("페이지controller도착-list"); 
@@ -63,7 +69,7 @@ public class StoreMemberBoardPageController {
 //		System.out.println("페이지controller-memberBoardDetail도착-상세보기");
 //		model.addAttribute("storeMemberBoard",storeMemberBoardService.memberBoardDetail(boardBno));
 //		return "user/boarddetail";
-//		
-//	}
+//		memberBoardDetail
+////	}
 
 }

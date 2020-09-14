@@ -51,7 +51,16 @@ public class StoreMemberBoardRestController {
 		
 	}
 
+	@RequestMapping(value ="boarddetail/{boardbno}" ,method = RequestMethod.GET)
+	public Map<String,Object> memberBoardDetail(HttpServletRequest request,HttpServletResponse response){
+	   System.out.println("StoreMemberBoardController-boarddetail-도착");
+		storeMemberBoardService.memberBoardDetail(request, response);
+		Map<String,Object> map = (Map<String,Object>)
+				request.getAttribute("result");
 		
+		return map;
+		
+	}
 		
 	}
 	

@@ -28,7 +28,7 @@ public class StoreMemberBoardDAO {
 		
 	}
 	//게시글 상세보기 
-    public StoreMemberBoard memberBoardDetail(int boardBno) {
+    public StoreMemberBoard memberBoardDetail(Integer boardBno) {
     	System.out.println("dao 상세보기 "+sqlSession);
     	return sqlSession.selectOne("storememberboard.memberboarddetail",boardBno);
    	

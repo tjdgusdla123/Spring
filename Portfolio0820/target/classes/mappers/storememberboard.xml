@@ -44,7 +44,7 @@
 <select id="memberboarddetail" resultType="naver.dkxkgh98.smartorder.domain.StoreMemberBoard" parameterType="java.lang.Integer">
 select boardbno,boardtitle,boardcontent,boardregdate,boardupdatedate,boardreadcnt,boardip,boardfile,membernickname
 from storememberboard where boardbno=#{boardbno}
-</select>
+</select>                            
  
 <!-- 글 번호를 가지고 조회수 1증가시키는 sql -->
 <update id="memberboardupdatereadcnt" parameterType="java.lang.Integer">

@@ -10,6 +10,7 @@
    <div id="boardlist"></div>
    	<select name="searchType" id="searchType">
 
+
 					<option value="boardTitle">제목</option>
 					<option value="boardContent">본문</option>
 					<option value="memberNickname">작성자</option>

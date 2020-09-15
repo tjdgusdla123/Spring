@@ -56,8 +56,7 @@ public class StoreMemberBoardRestController {
 	   System.out.println("StoreMemberBoardController-boarddetail-도착");
 		storeMemberBoardService.memberBoardDetail(request, response);
 		Map<String,Object> map = (Map<String,Object>)
-				request.getAttribute("result");
-		
+				request.getAttribute("result");		
 		return map;
 		
 	}

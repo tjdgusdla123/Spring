@@ -38,12 +38,12 @@ request.onload = function() {
     		msg +=  "<tr>" + 
     				"<td width='50'>"+imsi.boardBno+"</td>"+
     				"<td width='130'>"+"<a href = 'boarddetail/"+imsi.boardBno+"'>"+imsi.boardTitle+"</td>"+"</a>"+
+    				//"<td width='130'>"+"<a href = 'boarddetail'>"+imsi.boardTitle+"</td>"+"</a>"+
     				"<td width='100'>"+imsi.memberNickname+"</td>"+
     				"<td width='100'>"+imsi.boardDispdate+"</td>"+
     				"<td width='50'>"+imsi.boardReadcnt+"</td>"+
     				"</tr>"
     	};
-//<td>&nbsp;<a href="boarddetail/${storememberboard.boardBno}"> ${storememberboard.boardTitle}</td></a>
 			msg += "</table>"
 			
 			boardlist.innerHTML = msg;

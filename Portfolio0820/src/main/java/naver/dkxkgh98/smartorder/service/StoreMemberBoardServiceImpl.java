@@ -117,8 +117,12 @@ public void memberBoardList(HttpServletRequest request, HttpServletResponse resp
 public void memberBoardDetail(HttpServletRequest request, HttpServletResponse response) {
 
 	String path = request.getRequestURI();
+	System.out.println("서비스 path"+path);
 	String [] ar = path.split("/");
+	System.out.println("서비스  ar"+ar);
 	String boardBno = ar[ar.length-1];
+	
+	
   //String boardBno =request.getParameter("boardbno");
   System.out.println("ServiceImpl-memberBoardDetail-boardBno:"+boardBno);
   

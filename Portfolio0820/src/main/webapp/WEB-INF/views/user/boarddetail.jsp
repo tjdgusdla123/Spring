@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>도착하는지 확인</h1>
 <div id="boarddetail"></div>
 </body>
 

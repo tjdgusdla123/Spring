@@ -37,11 +37,11 @@ public class StoreMemberBoardPageController {
 	
 	@RequestMapping(value ="boardlist", method = RequestMethod.GET)
 	public String boardlist() {
-		System.out.println("페이지controller도착-글쓰기"); 
+		System.out.println("페이지controller도착-목록"); 
 		return "user/boardlist";
 }	
 	
-	@RequestMapping(value ="boarddetail/{boardBno}", method = RequestMethod.GET)
+	@RequestMapping(value ="boarddetail", method = RequestMethod.GET)
 	public String boarddetail() {
 		System.out.println("페이지controller도착-상세보기"); 
 		return "user/boarddetail";

@@ -50,8 +50,8 @@ public class StoreMemberBoardRestController {
 		return map;
 		
 	}
-
-	@RequestMapping(value ="boarddetail" ,method = RequestMethod.GET)
+                            
+	@RequestMapping(value ="boarddetail/{boardBno}" ,method = RequestMethod.GET)
 	public Map<String,Object> memberBoardDetail(HttpServletRequest request,HttpServletResponse response){
 	   System.out.println("StoreMemberBoardController-boarddetail-도착");
 		storeMemberBoardService.memberBoardDetail(request, response);

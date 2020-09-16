@@ -5,7 +5,6 @@
 <html>
 <head>
 <script src= "${pageContext.request.contextPath}/user/js/boarddetail.js"></script>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>

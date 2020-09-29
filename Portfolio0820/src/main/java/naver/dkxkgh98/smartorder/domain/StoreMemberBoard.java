@@ -15,6 +15,7 @@ public class StoreMemberBoard {
 	private String  boardIp;//작성한 곳의 아이피 
 	private String  boardFile;//첨부파일  
 	private String  memberNickname;//맴버 닉네임 
+	
 	private String  boardDispdate;
 
 

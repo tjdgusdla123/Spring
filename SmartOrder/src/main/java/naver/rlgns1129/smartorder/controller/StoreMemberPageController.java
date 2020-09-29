@@ -25,7 +25,7 @@ public class StoreMemberPageController {
 	//회원 로그인
 	@RequestMapping(value = "user/login", method = RequestMethod.GET)
 	public String login() {
-		
+		System.out.println("페이지 컨틀롤러 로그인 도착");
 		return "member/login";
 	}
 	

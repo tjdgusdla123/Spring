@@ -19,7 +19,6 @@
 		</div>
 	</nav>
 	
-	asasd
 	
 	<footer id="footer">
 		<div id="footer_box">

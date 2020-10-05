@@ -29,7 +29,7 @@
 		<a href="/shop/orderList">주문 리스트</a>
 	</li>
 	<li>
-		<a href="board/list">게시판</a>
+		<a href="board/boardmain">게시판</a>
 	</li>
 	<li>
 		<a href="user/update">회원정보수정</a>

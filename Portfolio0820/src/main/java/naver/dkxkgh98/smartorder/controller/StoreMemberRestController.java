@@ -31,7 +31,7 @@ public class StoreMemberRestController {
 	@RequestMapping(value="join",method=RequestMethod.POST)
 	public Map<String,Object> join(HttpServletRequest request, HttpServletResponse response){
 		//서비스의 메소드를 호출
-		Map<String,Object> map = storeMemberService.join(request, response);
+		Map<String,Object> map = storeMemberService.register(request, response);
 		
 		return map;
 		

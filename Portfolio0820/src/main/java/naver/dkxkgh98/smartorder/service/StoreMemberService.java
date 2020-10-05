@@ -30,10 +30,8 @@ public interface StoreMemberService {
 			public Map<String, Object> update(HttpServletRequest request , HttpServletResponse response);
 			//회원탈퇴
 			public int secession(HttpServletRequest request , HttpServletResponse response);
-			//로그아웃
-			public void logout(HttpSession session);
-			//위치데이터 가져오기
-			public String address(String loc);
+		
+			
 	}
 	 
 

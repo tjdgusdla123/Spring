@@ -14,7 +14,7 @@
 	 <ul>
 		<li><a href="${pageContext.request.contextPath}/boardlist">목록보기</a></li>
 		<li><a href="${pageContext.request.contextPath}/boardwrite">게시물 쓰기</a></li>
-		<li><a href="${pageContext.request.contextPath}/main">메인으로</a></li>
+		<li><a href="${pageContext.request.contextPath}/member/main">메인으로</a></li>
 		
 	</ul>
 </body>

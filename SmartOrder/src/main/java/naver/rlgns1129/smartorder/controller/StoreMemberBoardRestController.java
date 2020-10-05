@@ -21,13 +21,16 @@ public class StoreMemberBoardRestController {
 	private StoreMemberBoardService storeMemberBoardService;
 	
 	//게시물작성 
-	@RequestMapping(value ="boardwrite", method = RequestMethod.POST)
+	@RequestMapping(value ="memberboardwrite", method = RequestMethod.POST)
 	public Map<String,Object> memberBoard(MultipartHttpServletRequest request, HttpServletResponse response){
 		//서비스 메소드 호출
 		System.out.println("StoreMemberBoardController-memberBoard-도착-map");
+		storeMemberBoardService.memberBoard(request, response);
+		Map<String,Object> map = (Map<String,Object>)
+		request.getAttribute("result");
 		//request.getSession().getAttribute("storememberinfo");
 		//System.out.println("StoreMemberBoardController-memberBoard-도착 후 : " + request.getSession().getAttribute("storememberinfo"));
-		Map<String,Object> map = storeMemberBoardService.memberBoard(request, response);
+		//Map<String,Object> map = storeMemberBoardService.memberBoard(request, response);
 		//System.out.println("StoreMemberBoardController-memberBoard-도착-map:"+map);
 		return map;
 		

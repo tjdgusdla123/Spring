@@ -32,7 +32,7 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
     
 	//게시판 글 작성 
 	@Override
-	public Map<String, Object> memberBoard(MultipartHttpServletRequest request , HttpServletResponse response) {
+	public void memberBoard(MultipartHttpServletRequest request , HttpServletResponse response) {
   
 		Map<String,Object> map = new HashMap<String,Object>();
 		map.put("result", false);
@@ -115,11 +115,20 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 				// 저장에 성공하면 map의 result에 true 저장
 				if (row > 0) {
 					map.put("result", true);
+					System.out.println("ServiceImpl2-memberBoardWrite-map-true:"+map);
+				}else {
+					map.put("result",false);
+					System.out.println("ServiceImpl2-memberBoardWrite-map-false:"+map);
 				}
-			
-    return map;
+				System.out.println("ServiceImpl2-memberBoardWrite-result,map:"+map);
+				 request.setAttribute("result",map);	 
+				 
+				 
+				 
+				 
+			}
 
-	}
+	
 
 
 

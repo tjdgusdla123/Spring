@@ -157,57 +157,7 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 		
 	}
 
-	@Override
-	public void logout(HttpSession session) {
-		session.invalidate();
-	}
 	
-	//위도와 경도를 가지고 주소를 가져오는 메소드
-	@Override
-	public String address(String loc) {
-		String [] ar = loc.split(":");
-		String latitude = ar[0];
-		String longitude = ar[1];
-		String addr = 
-		"https://dapi.kakao.com/v2/local/geo/coord2address.json?x=" + longitude + "&y=" + latitude + "&input_coord=WGS84";
-		String address = "";
-		StringBuilder sb = new StringBuilder();
-		try {
-			URL url = new URL(addr);
-			HttpURLConnection conn = 
-				(HttpURLConnection)url.openConnection();		
-			if (conn != null) {
-				conn.setConnectTimeout(20000);
-				conn.setUseCaches(false);
-				conn.addRequestProperty("Authorization", "KakaoAK 2f24472d352fc42d5294e927030552b6"); 
-				if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-					InputStreamReader isr = new InputStreamReader(
-						conn.getInputStream());
-					BufferedReader br = new BufferedReader(isr);
-					while (true) {
-						String line = br.readLine();
-						if (line == null) {
-							break;
-						}
-						sb.append(line);
-					}
-				}
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}		
-		String json = sb.toString();
-		JSONObject obj = new JSONObject(json);
-		JSONArray documents = obj.getJSONArray("documents");
-		if(documents.length() > 0) {
-			JSONObject item = documents.getJSONObject(0);
-			JSONObject addressObj = item.getJSONObject("address");
-			address = addressObj.getString("address_name");
-		}
-		return address;
-		}
-
 	@Override
 	public Map<String, Object> update(HttpServletRequest request, HttpServletResponse response) {
 		
@@ -291,5 +241,7 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 		
 		return result;
 	}
+
+
 
 }

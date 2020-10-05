@@ -5,6 +5,7 @@
 <html>
 <head>
 <script src= "${pageContext.request.contextPath}/user/js/boardlist.js"></script>
+</head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
    <div id="boardlist"></div>

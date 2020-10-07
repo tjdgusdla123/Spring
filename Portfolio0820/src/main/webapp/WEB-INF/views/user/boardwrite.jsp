@@ -28,7 +28,7 @@
      
       <li>
      <label for="membernickname">작성자</label> 
-     <input id="membernickname" name="membernickname" value="${storememberinfo.membernickname}" readonly="readonly"><br/>
+     <input id="membernickname" name="membernickname" value="${storememberinfo.storemembernickname}" readonly="readonly"><br/>
      </li>
      
       <p></p> <img id="img" width="100"height="100" border="1" /> <br />

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- DTD: XML로 작성한 내용을 해석하는 위치를 설정 -->
+<!-- DTD복사해서 사용하자 -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="storememberboard">
+
+
+   <sql id="search">
+		<if test="searchtype != null">
+			<if test="searchtype == ''.toString()"></if>
+			<if test="searchtype == 'boardtitle'.toString()"> where lower(boardtitle)  like '%' || #{keyword} || '%' </if>
+			<if test="searchtype == 'membernickname'.toString()"> where  lower(membernickname) like '%' || #{keyword} || '%' </if>
+			<if test="searchtype == ''.toString()"> where lower(boardtitle)  like '%' || #{keyword} || '%' or lower(membernickname)  like '%' || #{keyword} || '%' </if>
+		</if>
+		<if test="searchtype == null">
+		</if>
+	</sql>
+  
+  <!-- 데이터의 개수를 가져오는 SQL -->
+  <select id="memberboardcount" resultType="java.lang.Integer" parameterType="java.util.Map">
+  select count(*) from storememberboard
+   <include refid="search"></include>
+  </select>
+ 	<!-- 게시글 전체 목록 조회 -->
+	<select id="list" resultType="naver.rlgns1129.smartorder.domain.StoreMemberBoard">
+		select boardbno,boardtitle,boardregdate,boardreadcnt,membernickname
+		from storememberboard
+		order by boardupdatedate desc
+                                                                              
+	</select>
+	
+ <!--   시작 번호와 종료 번호를 받아서 번호에 해당되는 데이터만 가져오는 SQL 
+  <select id="memberboardlist" resultType="naver.rlgns1129.smartorder.domain.StoreMember" parameterType="java.util.Map">
+  select boardbno,boardtitle,boardregdate,boardreadcnt,membernickname
+  from (select rownum rnum,boardbno,boardtitle,boardregdate,boardreadcnt,membernickname from(select * from  storememberboard
+  <include refid="search"></include>
+   order by boardbno desc)) 
+   where  rnum &gt;= #{start} AND rnum &lt;= #{end}                                                                                      
+  </select> 
+   -->
+<!-- 게시글 작성 삽입하는 sql -->
+<insert id="memberboardwrite" parameterType="naver.rlgns1129.smartorder.domain.StoreMember">
+	insert into storememberboard(boardbno, boardtitle, boardcontent, boardip, membernickname,boardfile)
+	values(memberboardseq.nextval, #{boardTitle}, #{boardContent}, #{boardIp}, #{memberNickname},#{boardFile})
+</insert>
+
+<!-- boardbno를 이용해서 1개의 데이터를 찾아오는 sql-->
+<select id="memberboarddetail" resultType="naver.rlgns1129.smartorder.domain.StoreMember" parameterType="java.lang.Integer">
+select boardbno,boardtitle,boardcontent,boardregdate,boardupdatedate,boardreadcnt,boardip,boardfile,membernickname
+from storememberboard where boardbno=#{boardbno}
+</select>                            
+ 
+<!-- 글 번호를 가지고 조회수 1증가시키는 sql -->
+<update id="memberboardupdatereadcnt" parameterType="java.lang.Integer">
+update storememberboard
+set boardreadcnt = boardreadcnt + 1
+where boardbno = #{boardbno}
+</update>
+
+<!-- 전체 목록을 가져오는 sql -->
+ <!-- <select id="memberboardlist" resultType="naver.dkxkgh98.smartorder.domain.StoreMemberBoard">
+ select boardbno,boardtitle,boardregdate,boardreadcnt,u.membernickname
+  from  storemembertbl u, storememberboard b
+  where  u.membernickname = b.membernickname
+  order by boardupdatedate desc
+</select> -->
+
+<!-- 글번호를 가지고 하나의 데이터를 가져오는 sql -->
+<!--  <select id="memberboarddetail" resultType="naver.dkxkgh98.smartorder.domain.StoreMemberBoard" parameterType="java.lang.Integer">
+select boardbno,boardtitle,boardcontent,boardregdate,boardupdatedate,boardreadcnt,boardip,boardfile,u.membernickname
+from storemembertbl u, storememberboard b
+where u.membernickname = b.membernickname and boardbno=#{boardbno}
+</select> -->
+
+
+	
+</mapper>
+
+	

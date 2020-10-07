@@ -19,8 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.poi.poifs.crypt.cryptoapi.CryptoAPIDecryptor;
-import org.json.JSONArray;
-import org.json.JSONObject;
+
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,8 +31,7 @@ import naver.dkxkgh98.smartorder.util.CryptoUtil;
 
 @Service
 public class StoreMemberServiceImpl implements StoreMemberService {
-	@Autowired
-	private StoreMemberDAO storeMemberDAO;
+	
 
 	@Autowired
 	private StoreMemberDAO storeMemberDao;
@@ -56,7 +54,7 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 	}
 
 	@Override
-	public Map<String, Object> register(HttpServletRequest request, HttpServletResponse response) {
+	public Map<String, Object> join(HttpServletRequest request, HttpServletResponse response) {
 		// 결과를 저장할 객체를 생성
 		Map<String, Object> map = new HashMap<String, Object>();
 		//성공과 실패 여부를 확인할 데이터 생성
@@ -95,7 +93,7 @@ public class StoreMemberServiceImpl implements StoreMemberService {
 			storeMember.setMemberPhoneNumber(memberPhoneNumber);
 			
 			//데이터베이스에 저장
-			int row = storeMemberDao.register(storeMember);
+			int row = storeMemberDao.join(storeMember);
 			//저장에 성공하면 map의 result에 true 저장
 			if(row > 0) {
 				map.put("result", true);

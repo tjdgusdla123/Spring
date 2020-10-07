@@ -53,10 +53,10 @@ window.addEventListener("load", function(event){
 		alert(e.target.responseText);
 	   
 	    //결과를 파싱
-		var obj = JSON.parse(e.target.responseText);
+		var map = JSON.parse(e.target.responseText);
 			
 			//결과를 가지고 다음 행동을 작성
-			if(obj.result == true){
+			if(map.result == true){
 				location.href = "boardlist";
 			}else{
 				msg.innerHTML = "작성 실패 ";

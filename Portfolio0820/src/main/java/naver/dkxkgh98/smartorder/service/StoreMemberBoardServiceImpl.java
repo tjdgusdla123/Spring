@@ -166,13 +166,13 @@ public void memberBoardWrite(MultipartHttpServletRequest request, HttpServletRes
 		
 		 //서버 애플리케이션의 img 디렉토리의 절대 경로 만들기
 		 String filePath = request.getServletContext().getRealPath("/img");
-		
+		System.out.println("ServiceImpl-memberBoardWrite-filePath :"+ filePath);
 		 //랜덤한 문자열을 생성하고 원래 파일 이름과 합쳐서 새로운 파일 이름 만들기
 		 boardFile = UUID.randomUUID() + image.getOriginalFilename();
 		 
 		 //파일 업로드할 경로 만들기 
 		 File file = new File (filePath +"/"+boardFile);
-		 
+		 System.out.println("ServiceImpl-memberBoardWrite-file :"+ file);
 		 //파일 업로드 하기 
 		 try(FileOutputStream fos = new FileOutputStream(file);) {
 			 fos.write(image.getBytes());

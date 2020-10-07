@@ -31,7 +31,8 @@
 
 	<!-- 데이터를 삽입하는 SQL -->
 	<insert id="insertstoremember" parameterType="naver.rlgns1129.smartorder.domain.StoreMember">
-		insert into storemembertbl(membernickname, memberemail, memberpassword, memberphonenumber) values(#{memberNickname},#{memberEmail},#{memberPassword},#{memberPhoneNumber})
+		insert into storemembertbl(membernickname, memberemail, memberpassword, memberphonenumber) 
+		values(#{memberNickname},#{memberEmail},#{memberPassword},#{memberPhoneNumber})
 	</insert>
 	
 	<!-- 데이터를 수정하는 SQL -->

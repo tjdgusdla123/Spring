@@ -23,7 +23,7 @@ public interface StoreMemberService {
 	        //전체 데이터를 가져오는 메소드
 			public void allStoreMember(HttpServletRequest request, HttpServletResponse response);
 			//회원가입
-			public Map<String, Object> register(HttpServletRequest request, HttpServletResponse response);
+			public Map<String, Object> join(HttpServletRequest request, HttpServletResponse response);
 			//로그인
 			public Map<String, Object> login(HttpServletRequest request, HttpServletResponse response);
 			//회원정보 수정

@@ -25,7 +25,7 @@ public class StoreMemberBoardRestController {
 	public Map<String,Object> memberBoard(MultipartHttpServletRequest request, HttpServletResponse response){
 		//서비스 메소드 호출
 		System.out.println("StoreMemberBoardController-memberBoard-도착-map");
-		storeMemberBoardService.memberBoard(request, response);
+		storeMemberBoardService.memberBoardWrite(request, response);
 		Map<String,Object> map = (Map<String,Object>)
 		request.getAttribute("result");
 		//request.getSession().getAttribute("storememberinfo");

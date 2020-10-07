@@ -21,7 +21,7 @@ public List<StoreMember> allStoreMember(){
 	
 }
 //회원 가입
-public int register(StoreMember storeMember){
+public int join(StoreMember storeMember){
 	return sqlSession.insert("storemember.insertstoremember", storeMember);
 }
 

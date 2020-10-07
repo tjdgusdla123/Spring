@@ -32,10 +32,10 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
     
 	//게시판 글 작성 
 	@Override
-	public void memberBoard(MultipartHttpServletRequest request , HttpServletResponse response) {
+	public void memberBoardWrite(MultipartHttpServletRequest request , HttpServletResponse response) {
   
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("result", false);
+		Map<String,Object> map = new HashMap<>();
+		
     //파라미터 읽기  
     String boardTitle = request.getParameter("boardtitle");
     String boardContent = request.getParameter("boardcontent");
@@ -111,7 +111,7 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 		     //System.out.println("serviceImpl-memberBoard-storeMemberBoard.setMemberNickname(memberNickname):"+memberNickname);
 		     System.out.println("serviceImpl-memberBoard-storeMemberBoard.setBoardIp(boardIp):"+boardIp);
 		    
-		     int row = storeMemberBoardDao.memberBoard(storeMemberBoard);
+		     int row = storeMemberBoardDao.memberBoardWrite(storeMemberBoard);
 				// 저장에 성공하면 map의 result에 true 저장
 				if (row > 0) {
 					map.put("result", true);
@@ -142,34 +142,105 @@ public class StoreMemberBoardServiceImpl implements StoreMemberBoardService {
 
 
 	   //게시글 목록  
-    @Override
-	public List<StoreMemberBoard> memberBoardList() {
-			List<StoreMemberBoard> list = storeMemberBoardDao.memberBoardList();
-			System.out.println("serviceImpl-memberBoard-memberBoardList-list:"+list);
-			Calendar cal =Calendar.getInstance();
-			Date today = new Date(cal.getTimeInMillis());
-			System.out.println("serviceImpl-memberBoard-memberBoardList-cal:"+cal);
-			System.out.println("serviceImpl-memberBoard-memberBoardList-today:"+today);
+//    @Override
+//	public List<StoreMemberBoard> memberBoardList() {
+//			List<StoreMemberBoard> list = storeMemberBoardDao.memberBoardList();
+//			System.out.println("serviceImpl-memberBoard-memberBoardList-list:"+list);
+//			Calendar cal =Calendar.getInstance();
+//			Date today = new Date(cal.getTimeInMillis());
+//			System.out.println("serviceImpl-memberBoard-memberBoardList-cal:"+cal);
+//			System.out.println("serviceImpl-memberBoard-memberBoardList-today:"+today);
+//		
+//	for(StoreMemberBoard storeMemberBoard :list) {
+//				System.out.println(today.toString());
+//				System.out.println(storeMemberBoard.getBoardRegdate().toString().substring(0,10));
+//			
+//			if(today.toString().equals(storeMemberBoard.getBoardRegdate().toString().substring(0,10))) {
+//					storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(11));
+//				
+//				}else {
+//				storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(0, 10));
+//				}
+//			}
+//	System.out.println("serviceImpl-memberBoard-memberBoardList-list:"+list);
+//
+//			return list;
+//			
+//			
+//			
+//	}
+	@Override
+	public void memberBoardList(HttpServletRequest request, HttpServletResponse response) {
+
+		//페이지 번호와 페이지 당 데이터 개수 읽어와서 데이터의 인덱스를 생성
+		String pageNo = request.getParameter("pageno");
+	    String pagecnt =request.getParameter("pagecnt");
+	    System.out.println("ServiceImpl-memberBoardList-pageno:"+pageNo);
+	    System.out.println("ServiceImpl-memberBoardList-pagecnt:"+pagecnt);
+	    //검색조건과 검색어를 저장 
+	    String searchtype = request.getParameter("searchtype");
+		String keyword = request.getParameter("keyword");
+		System.out.println("ServiceImpl-memberBoardList-searchtype:"+searchtype);
+		System.out.println("ServiceImpl-memberBoardList-keyword:"+keyword);
 		
-	for(StoreMemberBoard storeMemberBoard :list) {
-				System.out.println(today.toString());
-				System.out.println(storeMemberBoard.getBoardRegdate().toString().substring(0,10));
-			
-			if(today.toString().equals(storeMemberBoard.getBoardRegdate().toString().substring(0,10))) {
-					storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(11));
-				
-				}else {
-				storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(0, 10));
+		int cnt= 10;
+		//한번에 가져올 데이터 개수를 설정
+		
+				if(pagecnt != null) {
+					cnt = Integer.parseInt(pagecnt);
 				}
-			}
-	System.out.println("serviceImpl-memberBoard-memberBoardList-list:"+list);
+				//시작번호와 종료번호를 계산
+				int start = 1;
+				int end = start + cnt - 1;
+				
+				if (pageNo != null) {
+					start = Integer.parseInt(pageNo) * cnt - (cnt - 1);
+					end = Integer.parseInt(pageNo) * cnt;
+				}
 
-			return list;
-			
-			
-			
+				if(searchtype==null) {
+					searchtype="";
+				}
+				
+				if(keyword == null) {
+					keyword="";
+				}else {
+					keyword = keyword.toLowerCase();
+				}
+	           //파라미터를 가지고 DAO의 파라미터 만들기 
+				Map<String,Object> map =new HashMap<>();
+				map.put("start",start);
+				map.put("end",end);
+				map.put("searchtype",searchtype);
+				map.put("keyword",keyword);
+				System.out.println("ServiceImpl-memberBoardList-map:"+map);
+				
+				int memberBoardCount= storeMemberBoardDao.memberBoardCount(map);
+				System.out.println("ServiceImpl-memberBoardList-memberBoardCount:"+memberBoardCount);
+				List<StoreMemberBoard> memberBoardList = storeMemberBoardDao.memberBoardList(map);
+				Calendar cal = Calendar.getInstance();
+				Date today = new Date(cal.getTimeInMillis());
+				for (StoreMemberBoard storeMemberBoard : memberBoardList) {
+					if (today.toString().equals(storeMemberBoard.getBoardRegdate().toString().substring(0, 10))) {
+						storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(11));
+					} else {
+						storeMemberBoard.setBoardDispdate(storeMemberBoard.getBoardRegdate().toString().substring(0, 10));
+					}
+				}
+
+				System.out.println("ServiceImpl-memberBoardList-memberBoardList:"+memberBoardList);
+				
+				//DAO의 메소드를 호출해서 결과 가져오기 - 데이터 개수와 데이터 목록
+				map = new HashMap<String,Object>();
+				map.put("memberBoardList",memberBoardList);
+				map.put("memberBoardCount",memberBoardCount);
+				
+				//결과를 저장하기
+				System.out.println("ServiceImpl-memberBoardList-request:"+request);
+			   request.setAttribute("result", map);
+				
+						
 	}
-
 
 
 @Override

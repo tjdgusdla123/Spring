@@ -37,7 +37,7 @@
 		<slf4j.version>1.7.5</slf4j.version>
 
 		<!-- Test -->
-		<junit.version>4.12</junit.version>
+		<junit.version>4.13.1</junit.version>
 	</properties>
 
 	<!-- 중앙 저장소가 아닌 곳에서 라이브러리를 다운로드 받고자 하는 경우 설정 : Oracle 때문에 설정 -->
